@@ -1,2 +1,3 @@
-# Bater-Ponto
-O objetivo deste projeto é desenvolver um site para registro de ponto, voltado especialmente para pequenas empresas que não têm condições de adquirir um equipamento tradicional de controle de ponto. A plataforma utilizará a geolocalização do dispositivo e contará com um sistema de biometria para verificar a identidade do usuário.
+# php-python-docker
+Projeto base para aplicações web utilizando containers Docker com backend em PHP e Python, além de banco de dados MySQL.
+Ideal para desenvolvimento rápido e organizado, com serviços isolados e comunicação via rede Docker Compose.

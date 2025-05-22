@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  php-app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.php
+    ports:
+      - "8080:80"
+    volumes:
+      - ./backend-php:/var/www/html
+    depends_on:
+      - db
+    env_file:
+      - .env
+
+  python-api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.py
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend-python:/app
+    depends_on:
+      - db
+    env_file:
+      - .env
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  db_data:

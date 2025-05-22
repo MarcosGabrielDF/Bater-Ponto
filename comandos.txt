@@ -1,0 +1,21 @@
+1° = docker-compose build
+
+Constrói as imagens Docker a partir dos Dockerfiles (PHP, Python, MySQL).
+
+2° = docker-compose up -d
+
+Inicia os containers em background (PHP, Python, banco MySQL).
+
+3° = docker ps
+
+Verifica se os containers estão rodando e em quais portas.
+
+4° = Para parar os containers
+
+docker-compose down
+
+5° = Para reiniciar containers (por exemplo após alterações)
+
+docker-compose restart
+
+
