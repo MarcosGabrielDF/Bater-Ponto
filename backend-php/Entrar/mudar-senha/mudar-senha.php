@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recuperar Senha</title>
+  <link rel="stylesheet" href="../../css/cadastro.css">
+</head>
+<body>
+  <div class="login-container">
+    <h1>Recuperar Senha</h1>
+    <form action="recuperar_senha.php" method="POST">
+      <label for="email">Digite seu e-mail cadastrado</label>
+      <div class="input-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12 13.5L2 6.75V6c0-1.1.9-2 2-2h16c1.1 0 2 .9 2 2v.75L12 13.5zm0 2.25l10-6.75V18c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V9l10 6.75z"/>
+        </svg>
+        <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required>
+      </div>
+
+      <button type="submit">Enviar link de recuperação</button>
+
+      <div class="row">
+        <a href="../../index.php" class="esqueceu">Voltar ao login</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

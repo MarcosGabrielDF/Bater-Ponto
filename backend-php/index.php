@@ -20,7 +20,7 @@
       <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required />
 
       <div class="row">
-        <a href="#" class="esqueceu">Esqueceu a senha?</a> <br>
+        <a href="Entrar/mudar-senha/mudar-senha.php" class="esqueceu">Esqueceu a senha?</a> <br>
         <a href="Entrar/cadastrar/cadastro.php" class="esqueceu">Não tem uma conta?</a>
         <button type="submit">Entrar</button>
       </div>

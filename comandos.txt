@@ -17,5 +17,3 @@ docker-compose down
 5° = Para reiniciar containers (por exemplo após alterações)
 
 docker-compose restart
-
-
