@@ -10,7 +10,7 @@
   <main class="login-container">
     <h1>Cadastrar-se</h1>
 
-    <form>
+    <form action="../Codigo_php/Send_CreateAccount.php" method="POST" >
       <label for="tipoUsuario">Você é</label>
       <select id="tipoUsuario" name="tipoUsuario" required>
         <option value="" disabled selected>Selecione</option>
@@ -23,6 +23,9 @@
         <input type="text" id="codigo" name="codigo" />
       </div>
 
+      <label for="nome">Nome</label>
+      <input type="nome" id="nome" name="nome" placeholder="Digite seu nome" required />
+
       <label for="email">Email</label>
       <input type="email" id="email" name="email" placeholder="Digite seu email" required />
 
@@ -30,7 +33,7 @@
       <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required />
 
       <div class="row">
-        <a href="../../index.php" class="esqueceu">Já tem uma conta?</a>
+        <a href="../../index.html" class="esqueceu">Já tem uma conta?</a>
         <button type="submit">Cadastrar</button>
       </div>
     </form>

@@ -9,7 +9,15 @@
 <body>
   <main class="login-container">
     <h1>Entrar</h1>
-    <form>
+
+    <form action="Entrar/Enviar_dados_index.php" method="POST">
+      <label for="tipoUsuario">Você é</label>
+        <select id="tipoUsuario" name="tipoUsuario" required>
+          <option value="" disabled selected>Selecione</option>
+          <option value="empresa">Empresa</option>
+          <option value="funcionario">Funcionário</option>
+        </select>
+
       <label for="codigo">Código da empresa</label>
       <input type="text" id="codigo" name="codigo" placeholder="Digite o código da empresa" required />
 
@@ -20,8 +28,8 @@
       <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required />
 
       <div class="row">
-        <a href="Entrar/mudar-senha/mudar-senha.php" class="esqueceu">Esqueceu a senha?</a> <br>
-        <a href="Entrar/cadastrar/cadastro.php" class="esqueceu">Não tem uma conta?</a>
+        <a href="Entrar/Estrutura_html/Change_Password.html" class="esqueceu">Esqueceu a senha?</a> <br>
+        <a href="Entrar/Estrutura_html/Create_Account.html" class="esqueceu">Não tem uma conta?</a>
         <button type="submit">Entrar</button>
       </div>
     </form>
