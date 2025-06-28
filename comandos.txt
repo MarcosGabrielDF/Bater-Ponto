@@ -17,3 +17,61 @@ docker-compose down
 5° = Para reiniciar containers (por exemplo após alterações)
 
 docker-compose restart
+
+
+
+================================================================
+
+Comandos Básicos para Acessar e Consultar Tabelas no MySQL
+
+===========================================================
+
+1. Acessar o MySQL:
+-------------------
+mysql -h db -u admin -p
+
+(Substitua "db" pelo nome do serviço MySQL no docker-compose.yml e "admin" pelo seu usuário)
+
+2. Mostrar todos os bancos de dados:
+------------------------------------
+SHOW DATABASES;
+
+3. Selecionar um banco de dados:
+--------------------------------
+USE nome_do_banco;
+
+4. Listar todas as tabelas dentro do banco:
+-------------------------------------------
+SHOW TABLES;
+
+5. Ver estrutura (colunas e tipos) de uma tabela:
+-------------------------------------------------
+DESCRIBE nome_da_tabela;
+-- ou --
+SHOW COLUMNS FROM nome_da_tabela;
+
+6. Ver todos os dados de uma tabela:
+------------------------------------
+SELECT * FROM nome_da_tabela;
+
+7. Ver os primeiros registros de uma tabela:
+--------------------------------------------
+SELECT * FROM nome_da_tabela LIMIT 5;
+
+8. Filtrar dados com condição:
+------------------------------
+SELECT * FROM nome_da_tabela WHERE coluna = 'valor';
+
+Exemplo:
+SELECT * FROM usuarios WHERE username = 'Batman';
+
+9. Ver apenas algumas colunas:
+------------------------------
+SELECT coluna1, coluna2 FROM nome_da_tabela;
+
+Exemplo:
+SELECT username, senha FROM usuarios;
+
+10. Contar a quantidade de registros:
+-------------------------------------
+SELECT COUNT(*) FROM nome_da_tabela;
