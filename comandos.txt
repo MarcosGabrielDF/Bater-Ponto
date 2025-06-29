@@ -26,11 +26,12 @@ Comandos Básicos para Acessar e Consultar Tabelas no MySQL
 
 ===========================================================
 
-1. Acessar o MySQL:
+1. Acessar o MySQL: Entre na pasta do com (cd docker).
 -------------------
+docker exec -it bater-ponto-php-app-1 bash
 mysql -h db -u admin -p
 
-(Substitua "db" pelo nome do serviço MySQL no docker-compose.yml e "admin" pelo seu usuário)
+(Substitua "bater-ponto-php-app-1" pelo nome do serviço MySQL no docker-compose.yml e "admin" pelo seu usuário)
 
 2. Mostrar todos os bancos de dados:
 ------------------------------------

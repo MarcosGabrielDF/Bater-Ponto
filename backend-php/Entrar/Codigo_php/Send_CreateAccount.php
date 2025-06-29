@@ -49,8 +49,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($stmt->execute()) {
         echo "Usuário cadastrado com sucesso!";
     } else {
-        echo "Erro ao cadastrar: " . $conn->error;
+        $errorInfo = $stmt->errorInfo();
+        echo "Erro ao cadastrar: " . $errorInfo[2];
     }
+
 
     $stmt->close();
     $conn->close();
