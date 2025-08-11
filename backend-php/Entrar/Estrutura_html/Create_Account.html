@@ -5,12 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cadastro</title>
   <link rel="stylesheet" href="../../css/cadastro.css" />
+  <style>
+    /* Estilo para o balão de erro, se ainda não estiver no seu CSS */
+    .erro-balao {
+      background-color: #f8d7da;
+      color: #721c24;
+      padding: 15px;
+      border-radius: 5px;
+      border: 1px solid #f5c6cb;
+      margin-bottom: 20px;
+      display: none; /* Escondido por padrão */
+    }
+  </style>
 </head>
 <body>
+
   <main class="login-container">
     <h1>Cadastrar-se</h1>
 
-    <form action="../Codigo_php/Send_CreateAccount.php" method="POST" >
+    <form id="form-cadastro">
       <label for="tipoUsuario">Você é</label>
       <select id="tipoUsuario" name="tipoUsuario" required>
         <option value="" disabled selected>Selecione</option>
@@ -27,7 +40,7 @@
       <input type="nome" id="nome" name="nome" placeholder="Digite seu nome" required />
 
       <label for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="Digite seu email" required />
+      <input type="email" id="email" name="email" pattern=".+@gmail\.com" placeholder="Digite seu email" required />
 
       <label for="senha">Senha</label>
       <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required />
@@ -36,13 +49,18 @@
         <a href="../../index.html" class="esqueceu">Já tem uma conta?</a>
         <button type="submit">Cadastrar</button>
       </div>
-    </form>
+    </form> <br>
+
+     <div id="balao-erro" class="erro-balao"></div>
   </main>
 
   <script>
+    // Mostrar a opção de código.
     const tipoUsuario = document.getElementById('tipoUsuario');
     const campoCodigo = document.getElementById('campoCodigo');
     const labelCodigo = document.getElementById('labelCodigo');
+    const formCadastro = document.getElementById('form-cadastro');
+    const balaoErro = document.getElementById('balao-erro');
 
     tipoUsuario.addEventListener('change', () => {
       if (tipoUsuario.value === 'empresa') {
@@ -56,6 +74,38 @@
         labelCodigo.textContent = '';
       }
     });
+
+    // Lógica para enviar o formulário via AJAX
+    formCadastro.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Evita o recarregamento da página
+
+        balaoErro.style.display = 'none'; // Esconde o balão de erro
+        balaoErro.innerHTML = '';
+
+        const formData = new FormData(formCadastro);
+
+        try {
+            const response = await fetch('../Codigo_php/Send_CreateAccount.php', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (result.sucesso) {
+                alert(result.mensagem); // Mensagem de sucesso
+                window.location.href = '../../index.html'; // Redireciona em caso de sucesso
+            } else {
+                balaoErro.style.display = 'block';
+                balaoErro.innerHTML = result.mensagem.join('<br>'); // Exibe os erros
+            }
+        } catch (error) {
+            console.error('Erro:', error);
+            balaoErro.style.display = 'block';
+            balaoErro.innerHTML = 'Erro na comunicação com o servidor. Tente novamente.';
+        }
+    });
+
   </script>
 </body>
 </html>

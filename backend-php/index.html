@@ -5,34 +5,106 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login</title>
   <link rel="stylesheet" href="css/entrar.css" />
+  <style>
+    /*Balão de erro usando AJAX*/
+    .erro-balao {
+      background-color: #f8d7da;
+      color: #721c24;
+      padding: 15px;
+      border-radius: 5px;
+      border: 1px solid #f5c6cb;
+      margin-bottom: 20px;
+      display: none; /* Escondido por padrão */
+            }
+  </style>
 </head>
 <body>
+
   <main class="login-container">
-    <h1>Entrar</h1>
+    <h1>Login</h1>
 
-    <form action="Entrar/Codigo_php/Send_index.php" method="POST">
+    <form id="form-login">
       <label for="tipoUsuario">Você é</label>
-        <select id="tipoUsuario" name="tipoUsuario" required>
-          <option value="" disabled selected>Selecione</option>
-          <option value="empresa">Empresa</option>
-          <option value="funcionario">Funcionário</option>
-        </select>
+      <select id="tipoUsuario" name="tipoUsuario" required>
+        <option value="" disabled selected>Selecione</option>
+        <option value="empresa">Empresa</option>
+        <option value="funcionario">Funcionário</option>
+      </select>
 
-      <label for="codigo">Código da empresa</label>
-      <input type="text" id="codigo" name="codigo" placeholder="Digite o código da empresa" required />
+      <div id="campoCodigo" class="codigo-field" style="display:none;">
+        <label for="codigo" id="labelCodigo"></label>
+        <input type="text" id="codigo" name="codigo" />
+      </div>
 
       <label for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="Digite seu email" required />
+      <input type="email" id="email" name="email" pattern=".+@gmail\.com" placeholder="Digite seu email" required />
 
       <label for="senha">Senha</label>
       <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required />
 
       <div class="row">
-        <a href="Entrar/Estrutura_html/Change_Password.html" class="esqueceu">Esqueceu a senha?</a> <br>
-        <a href="Entrar/Estrutura_html/Create_Account.html" class="esqueceu">Não tem uma conta?</a>
+        <a href="Entrar/Estrutura_html/Create_Account.html" class="esqueceu">Criar conta</a>
         <button type="submit">Entrar</button>
       </div>
-    </form>
+    </form> <br>
+
+    <div id="balao-erro" class="erro-balao"></div>
+
   </main>
+
+  <script>
+    // Lógica para mostrar/esconder o campo de código (mantida)
+    const tipoUsuario = document.getElementById('tipoUsuario');
+    const campoCodigo = document.getElementById('campoCodigo');
+    const labelCodigo = document.getElementById('labelCodigo');
+    
+    tipoUsuario.addEventListener('change', () => {
+      if (tipoUsuario.value === 'empresa') {
+        campoCodigo.style.display = 'block';
+        labelCodigo.textContent = 'Código da Empresa';
+      } else if (tipoUsuario.value === 'funcionario') {
+        campoCodigo.style.display = 'block';
+        labelCodigo.textContent = 'Código da Empresa';
+      } else {
+        campoCodigo.style.display = 'none';
+        labelCodigo.textContent = '';
+      }
+    });
+
+    // Lógica para enviar o formulário via AJAX e exibir o balão
+    const formLogin = document.getElementById('form-login');
+    const balaoErro = document.getElementById('balao-erro');
+
+    formLogin.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Evita o recarregamento da página
+
+        balaoErro.style.display = 'none';
+        balaoErro.innerHTML = '';
+
+        const formData = new FormData(formLogin);
+
+        try {
+            const response = await fetch('Entrar/Codigo_php/Send_index.php', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+
+            if (result.sucesso) {
+                // Sucesso: armazena informações de sessão ou redireciona
+                alert(result.mensagem);
+                window.location.href = result.redirecionarPara;
+            } else {
+                // Erro: exibe o balão com a mensagem
+                balaoErro.style.display = 'block';
+                balaoErro.innerHTML = result.mensagem;
+            }
+        } catch (error) {
+            console.error('Erro:', error);
+            balaoErro.style.display = 'block';
+            balaoErro.innerHTML = 'Erro na comunicação com o servidor. Tente novamente.';
+        }
+    });
+  </script>
 </body>
 </html>

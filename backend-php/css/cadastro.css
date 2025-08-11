@@ -23,6 +23,17 @@ body {
   position: relative;
 }
 
+/*Balão de erro usando AJAX*/
+.erro-balao {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #f5c6cb;
+  margin-bottom: 20px;
+  display: none; /* Escondido por padrão */
+        }
+
 /* Fundo animado */
 body::before {
   content: '';
