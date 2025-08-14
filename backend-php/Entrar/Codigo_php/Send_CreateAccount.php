@@ -33,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mensagensDeErro[] = 'A senha deve ter no mínimo 6 caracteres.';
     }
 
+    //Empresa 
     if ($tipo === 'empresa') {
         // Validação do campo código para empresas (não pode ser vazio)
         if (empty($codigo)) {
@@ -80,7 +81,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
 
         echo json_encode(['sucesso' => true, 'mensagem' => 'Empresa cadastrada com sucesso!']);
+    
 
+    // Funcionario. 
     } elseif ($tipo === 'funcionario') {
         // Validação do campo código para funcionário
         if (empty($codigo)) {
