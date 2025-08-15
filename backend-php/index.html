@@ -91,9 +91,10 @@
             const result = await response.json();
 
             if (result.sucesso) {
-                // Sucesso: armazena informações de sessão ou redireciona
-                alert(result.mensagem);
-                window.location.href = result.redirecionarPara;
+
+               // alert(result.mensagem); // Mensagem de sucesso
+                window.location.href = result.redirecionarPara; // Envia o usuario para a página
+
             } else {
                 // Erro: exibe o balão com a mensagem
                 balaoErro.style.display = 'block';

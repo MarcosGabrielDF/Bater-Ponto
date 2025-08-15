@@ -93,8 +93,11 @@
             const result = await response.json();
 
             if (result.sucesso) {
+
                 alert(result.mensagem); // Mensagem de sucesso
-                window.location.href = '../../index.html'; // Redireciona em caso de sucesso
+                window.location.href = '../../index.html'; // Redireciona para a tela de login
+
+
             } else {
                 balaoErro.style.display = 'block';
                 balaoErro.innerHTML = result.mensagem.join('<br>'); // Exibe os erros

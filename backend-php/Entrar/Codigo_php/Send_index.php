@@ -36,7 +36,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     // 2. Lógica de busca no banco de dados, baseada no tipo de usuário
     if ($tipo == 'empresa') {
         $tabela = 'empresas';
-        $redirect = 'caminho/para/tela_empresa.html';
+        $redirect = '../../usuario/empresa/telas/home_empresa.html';
         $mensagem_sucesso = 'Login de empresa realizado com sucesso!';
 
         $stmt = $pdo->prepare("SELECT id, senha, codigo_empresa FROM {$tabela} WHERE email = :email");
@@ -45,7 +45,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     } elseif ($tipo == 'funcionario') {
         $tabela = 'funcionarios';
-        $redirect = 'caminho/para/tela_funcionario.html';
+        $redirect = '../../usuario/funcionarios/telas/home_funcionario.html';
         $mensagem_sucesso = 'Login de funcionário realizado com sucesso!';
 
         $stmt = $pdo->prepare("SELECT f.id, f.senha, e.codigo_empresa 
